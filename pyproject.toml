@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dmarc-ready"
+version = "0.1.0"
+description = "Is this domain ready for DMARC p=reject? Reads aggregate reports and lists every sender that would break"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Andile Mbele", email = "andilembele020@gmail.com" }]
+keywords = ["dmarc", "rua", "aggregate-report", "email", "security"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+    "Typing :: Typed",
+]
+dependencies = ["defusedxml>=0.7.1", "dnspython>=2.6"]
+
+[project.urls]
+Homepage = "https://github.com/xeroxzen/dmarc-ready"
+Issues = "https://github.com/xeroxzen/dmarc-ready/issues"
+
+[dependency-groups]
+dev = ["pytest>=8", "mypy>=1.10", "ruff>=0.5", "types-defusedxml>=0.7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dmarc_ready"]
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+
+[project.scripts]
+dmarc-ready = "dmarc_ready.cli:main"
