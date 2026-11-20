@@ -23,8 +23,10 @@ It reads the `.xml`, `.xml.gz` and `.zip` files that receivers send, as they arr
 ## Install
 
 ```bash
-uv tool install git+https://github.com/xeroxzen/dmarc-ready
+uv tool install dmarc-ready
 ```
+
+Or run it once without installing: `uvx dmarc-ready path/to/reports/`.
 
 Requires Python 3.10 or later.
 
